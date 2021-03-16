@@ -2,11 +2,14 @@ PATH
   remote: .
   specs:
     player_set_history (0.1.0)
+      graphql
+      pry
 
 GEM
   remote: https://rubygems.org/
   specs:
     coderay (1.1.3)
+    graphql (1.12.6)
     method_source (1.0.0)
     pry (0.14.0)
       coderay (~> 1.1)
@@ -19,7 +22,6 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 2.0)
   player_set_history!
-  pry
   rake (~> 10.0)
 
 BUNDLED WITH
