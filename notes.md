@@ -28,3 +28,67 @@ CLIManager
 SggApi
 - #get_user
 - #get_users_in_tournament
+- 
+
+SAMPLE QUERY
+
+@url = 'https://api.smash.gg/gql/alpha'
+@token = '97db6a94b20d4004ba9ad54d37d6a290'
+
+query = %{
+    query Users($slug: String) {
+        user(slug: $slug){
+    				genderPronoun
+    				location {
+    				  state
+              country
+    				}
+    				authorizations(types: [TWITCH, TWITTER, DISCORD]){
+							url
+    				}
+    				
+    				player{
+              id
+              gamerTag
+              sets(perPage: 1, page: 1 ) {
+                nodes {
+                  displayScore
+                  fullRoundText
+                  event {
+                    videogame {
+                      displayName
+                    }
+                    tournament{
+                      name
+                    }
+                  }
+            		}
+          		}
+						}
+  }
+}
+
+}
+
+variables = {
+    slug: "356d0e24"
+  }
+
+
+result = HTTParty.post(
+  @url,
+  headers: { 
+    'Content-Type'  => 'application/json', 
+    'Authorization' => "Bearer #{@token}" 
+  },
+  body: { 
+    query: query, 
+    variables: variables 
+  }.to_json
+)
+
+puts "#{result}"
+
+
+SAMPLE RESULTS
+{"data":{"user":{"genderPronoun":null,"location":{"state":"CA","country":"United States"},"authorizations":[{"url":"https:\/\/twitter.com\/Kizzie_Kay310"},{"url":"https:\/\/twitch.tv\/Kizziekay310"}],"player":{"id":57141,"gamerTag":"KizzieKay","sets":{"nodes":[{"displayScore":"Panda | Kizzie Kay 2 - Hursh 0","fullRoundText":"Winners Semi-Final","event":{"videogame":{"displayName":"Guilty Gear Xrd REV2"},"tournament":{"name":"WNF2021 Online Edition Episode 9"}}}]}}}},"extensions":{"cacheControl":{"version":1,"hints":null},"queryComplexity":14},"actionRecords":[]}
