@@ -4,6 +4,6 @@ require_relative '../lib/environment'
 i = PlayerSetHistory::Importer.new()
 
 
-puts i.import_from_sgg("356d0e24")
+puts i.import_user_from_sgg("356d0e24")
 
 

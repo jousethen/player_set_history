@@ -6,11 +6,12 @@ class PlayerSetHistory::Importer
     @token = token
   end
   
-  def query(page_num = 1)
+  def user_query()
     return %{
       query Users($slug: String) {
          user(slug: $slug) {
           genderPronoun
+          discriminator
           location {
            state
            country
@@ -26,8 +27,8 @@ class PlayerSetHistory::Importer
     }
   end
   
-  def import_from_sgg(slug_str)
-   q = query
+  def import_user_from_sgg(slug_str)
+    q = user_query
     variables = {slug: slug_str}
     result = HTTParty.post(
       @url,
@@ -41,7 +42,6 @@ class PlayerSetHistory::Importer
       }.to_json
     )
     
-    result_hash = JSON.parse(result.response.body)
-   
+    return JSON.parse(result.response.body)["data"]["user"]
   end
 end

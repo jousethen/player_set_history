@@ -11,4 +11,15 @@ class PlayerSetHistory::Player
     attributes_hash.each {|key, value| self.send(("#{key}="), value)}
   end
   
+  def self.create_from_json(user_hash)
+    attributes = {}
+    attributes[:pronoun] = user_hash["genderPronoun"]
+    attributes[:state] = user_hash["location"]["state"]
+    attributes[:country] = user_hash["location"]["country"]
+    attributes[:slug] = user_hash["discriminator"]
+    attributes[:player_id] = user_hash["player"]["id"]
+    attributes[:tag] = user_hash["player"]["gamerTag"]
+    
+    
+  end
 end
