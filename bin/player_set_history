@@ -1,5 +1,9 @@
 #!/usr/bin/env ruby
 require_relative '../lib/environment'
 
+i = PlayerSetHistory::Importer.new()
+
+
+puts i.import_from_sgg("356d0e24")
 
 

@@ -6,8 +6,8 @@ class PlayerSetHistory::Importer
     @token = token
   end
   
-  def import_from_sgg(slug_str)
-    query = %{
+  def query(page_num)
+    return %{
       query Users($slug: String) {
        user(slug: $slug) {
         genderPronoun
@@ -20,7 +20,7 @@ class PlayerSetHistory::Importer
         player {
          id
          gamerTag
-         sets(perPage: 1, page: 1) {
+         sets(perPage: 1, page: #{page_num}) {
           nodes {
            displayScore
            fullRoundText
@@ -33,8 +33,24 @@ class PlayerSetHistory::Importer
        }
       }
     }
-    
+  end
+  
+  def import_from_sgg(slug_str)
+   q = query(1)
     variables = {slug: slug_str}
+    result = HTTParty.post(
+      @url,
+      headers: { 
+        'Content-Type'  => 'application/json', 
+        'Authorization' => "Bearer #{@token}" 
+      },
+      body: { 
+        query: q, 
+        variables: variables 
+      }.to_json
+    )
+    
+    return result
     
   end
 end
