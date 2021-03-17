@@ -1,5 +1,5 @@
 class PlayerSetHistory::Player
-  attr_accessor :slug, :tag, :twitter, :discord, :twitch, :pronoun, :state, :country, :player_id
+  attr_accessor :slug, :tag, :twitter, :discord, :twitch, :pronoun, :state, :country, :player_id, :sets
   @@all = []
   
   def initiliaze(attributes)

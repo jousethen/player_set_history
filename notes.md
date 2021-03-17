@@ -36,39 +36,30 @@ SAMPLE QUERY
 @token = '97db6a94b20d4004ba9ad54d37d6a290'
 
 query = %{
-    query Users($slug: String) {
-        user(slug: $slug){
-    				genderPronoun
-    				location {
-    				  state
-              country
-    				}
-    				authorizations(types: [TWITCH, TWITTER, DISCORD]){
-							url
-    				}
-    				
-    				player{
-              id
-              gamerTag
-              sets(perPage: 1, page: 1 ) {
-                nodes {
-                  displayScore
-                  fullRoundText
-                  event {
-                    videogame {
-                      displayName
-                    }
-                    tournament{
-                      name
-                    }
-                  }
-            		}
-          		}
-						}
+query Users($slug: String) {
+ user(slug: $slug) {
+  genderPronoun
+  location {
+   state
+   country
   }
-}
+  authorizations(types: [TWITCH, TWITTER, DISCORD]) {url}
 
-}
+  player {
+   id
+   gamerTag
+   sets(perPage: 1, page: 1) {
+    nodes {
+     displayScore
+     fullRoundText
+     event {videogame {displayName}
+      tournament {name}
+     }
+    }
+   }
+  }
+ }
+}}
 
 variables = {
     slug: "356d0e24"
