@@ -81,5 +81,26 @@ result = HTTParty.post(
 puts "#{result}"
 
 
+
 SAMPLE RESULTS
 {"data":{"user":{"genderPronoun":null,"location":{"state":"CA","country":"United States"},"authorizations":[{"url":"https:\/\/twitter.com\/Kizzie_Kay310"},{"url":"https:\/\/twitch.tv\/Kizziekay310"}],"player":{"id":57141,"gamerTag":"KizzieKay","sets":{"nodes":[{"displayScore":"Panda | Kizzie Kay 2 - Hursh 0","fullRoundText":"Winners Semi-Final","event":{"videogame":{"displayName":"Guilty Gear Xrd REV2"},"tournament":{"name":"WNF2021 Online Edition Episode 9"}}}]}}}},"extensions":{"cacheControl":{"version":1,"hints":null},"queryComplexity":14},"actionRecords":[]}
+
+
+
+
+just player info
+query Users($slug: String) {
+ user(slug: $slug) {
+  genderPronoun
+  location {
+   state
+   country
+  }
+  authorizations(types: [TWITCH, TWITTER, DISCORD]) {url}
+
+  player {
+   id
+   gamerTag
+    }
+   }
+  }
