@@ -2,13 +2,17 @@ class PlayerSetHistory::Player
   attr_accessor :slug, :tag, :twitter, :discord, :twitch, :pronoun, :state, :country, :player_id, :sets
   @@all = []
   
-  def initiliaze(attributes)
+  def initialize(attributes)
     attributes.each {|key, value| self.send(("#{key}="), value)} 
     @@all << self
   end
   
+  def self.all
+    @@all
+  end
+  
   def add_player_attributes(attributes)
-    attributes_hash.each {|key, value| self.send(("#{key}="), value)}
+    attributes.each {|key, value| self.send(("#{key}="), value)}
   end
   
   def self.create_from_json(user_hash)
@@ -20,6 +24,23 @@ class PlayerSetHistory::Player
     attributes[:player_id] = user_hash["player"]["id"]
     attributes[:tag] = user_hash["player"]["gamerTag"]
     
+    # Links
+    user_hash["authorizations"].each do |url|
+      
+      social = ""
+      social = url["url"]
+  
+      if social.include?("twitter")
+        attributes[:twitter] = social
+      elsif social.include?("discord")
+        attributes[:discord] = social
+      elsif social.include?("twitch")
+        attributes[:twitch] = social
+      end
+    end
     
+    player = PlayerSetHistory::Player.new(attributes)
+    @@all << player
+    return player
   end
 end
