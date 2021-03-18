@@ -47,7 +47,9 @@ class PlayerSetHistory::Player
     return player
   end
   
-  def self.create_from_tag(tag)
-    
+  def self.create_from_tag(prefix, tag)
+    attributes = {:prefix => prefix, :tag => tag}
+    player = PlayerSetHistory::Player.new(attributes)
+    return player
   end
 end
