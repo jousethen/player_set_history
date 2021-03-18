@@ -15,8 +15,15 @@ class PlayerSetHistory::Set
   end
   
   def self.create_player_sets(set_hash)
-    set_hash["nodes"].each do |node|
-      binding.pry
+    set_hash["nodes"].each do |event|
+      # Create tournament
+      tourny = PlayerSetHistory::Tournament.new(event["tournament"]["name"],              event["tournament"]["startAt"])
+      
+      # create sets 
+      event["sets"]["nodes"].each do |set|
+        # Find Player
+      end
+      
     end
     
   end
