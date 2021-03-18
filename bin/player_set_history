@@ -4,10 +4,10 @@ require_relative '../lib/environment'
 i = PlayerSetHistory::Importer.new()
 
 
-response = i.import_user_from_sgg("356d0e24")
+response = i.import_user_from_sgg("08e32f96")
 
 player = PlayerSetHistory::Player.create_from_json(response)
-binding.pry
+puts response
 
 
 
