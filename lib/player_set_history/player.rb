@@ -29,13 +29,15 @@ class PlayerSetHistory::Player
       
       social = ""
       social = url["url"]
-  
-      if social.include?("twitter")
-        attributes[:twitter] = social
-      elsif social.include?("discord")
-        attributes[:discord] = social
-      elsif social.include?("twitch")
-        attributes[:twitch] = social
+      
+      if social != nil
+        if social.include?("twitter")
+          attributes[:twitter] = social
+        elsif social.include?("discord")
+          attributes[:discord] = social
+        elsif social.include?("twitch")
+          attributes[:twitch] = social
+        end
       end
     end
     
