@@ -16,15 +16,15 @@ class PlayerSetHistory::Player
   end
   
   def self.create_from_json(user_hash)
-    attributes = {}
-    attributes[:pronoun] = user_hash["genderPronoun"]
-    attributes[:state] = user_hash["location"]["state"]
-    attributes[:country] = user_hash["location"]["country"]
-    attributes[:slug] = user_hash["discriminator"]
-    attributes[:player_id] = user_hash["player"]["id"]
-    attributes[:tag] = user_hash["player"]["gamerTag"]
-    attributes[:prefix] = user_hash["player"]["prefix"]
-    
+    attributes = {
+      :pronoun => user_hash["genderPronoun"],
+      :state => user_hash["location"]["state"],
+      :country => user_hash["location"]["country"],
+      :slug => user_hash["discriminator"],
+      :player_id => user_hash["player"]["id"],
+      :tag => user_hash["player"]["gamerTag"],
+      :prefix => user_hash["player"]["prefix"],
+    }
     # Links
     user_hash["authorizations"].each do |url|
       
