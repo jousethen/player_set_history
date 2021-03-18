@@ -32,7 +32,7 @@ class PlayerSetHistory::Importer
     return %{
       query Users($slug: String, $pid: ID) {
         user(slug: $slug) {
-          events(query: { page: 1, perPage: 100, filter: { videogameId: @game_id } }) {
+          events(query: { page: 1, perPage: 100, filter: { videogameId: #{@game_id} } }) {
             nodes {
               tournament{
                 name
@@ -71,8 +71,8 @@ class PlayerSetHistory::Importer
   def import_sets_from_sgg(slug_str, pid_str)
     q = set_query
     variables = {
-      "slug": "08e32f96",
-      "pid": "15866"
+      slug: slug_str,
+      pid: pid_str
     }
     result = HTTParty.post(
       @url,
@@ -86,6 +86,6 @@ class PlayerSetHistory::Importer
       }.to_json
     )
     
-    return JSON.parse(result.response.body)["data"]["user"]
+    return JSON.parse(result.response.body)
   end
 end
