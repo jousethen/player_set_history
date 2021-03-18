@@ -13,4 +13,8 @@ class PlayerSetHistory::Set
   def self.all 
     @@all
   end
+  
+  def self.create_player_sets(set_hash)
+    
+  end
 end
