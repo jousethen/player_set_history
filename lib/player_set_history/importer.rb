@@ -86,6 +86,7 @@ class PlayerSetHistory::Importer
       }.to_json
     )
     
-    return JSON.parse(result.response.body)
+    return JSON.parse(result.response.body)["data"]["user"]["events"]
+    
   end
 end
