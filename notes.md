@@ -106,20 +106,21 @@ query Users($slug: String) {
   
   GET ALL SETS FROM USER
   
- query Users($slug: String $pid: ID) {
+ query Users($slug: String, $pid: ID) {
   user(slug: $slug) {
-	events (query:{page: 1, perPage: 100, filter:{videogameId:22406}}){
-    nodes
-    {
-      id
-      name
-      sets (filters: {playerIds:[$pid]}){
-        nodes{
-          displayScore
+    events(query: { page: 1, perPage: 100, filter: { videogameId: 22406 } }) {
+      nodes {
+        tournament{
+          name
+          startAt
+        }
+        sets(filters: { playerIds: [$pid] }) {
+          nodes {
+            displayScore
+          }
         }
       }
     }
-  }
   }
 }
 
