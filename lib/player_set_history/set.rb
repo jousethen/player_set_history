@@ -15,6 +15,9 @@ class PlayerSetHistory::Set
   end
   
   def self.create_player_sets(set_hash)
+    set_hash["nodes"].each do |node|
+      binding.pry
+    end
     
   end
 end
