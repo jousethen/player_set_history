@@ -1,5 +1,5 @@
 class PlayerSetHistory::Player
-  attr_accessor :slug, :tag, :twitter, :discord, :twitch, :pronoun, :state, :country, :player_id, :sets
+  attr_accessor :slug, :tag, :twitter, :discord, :twitch, :pronoun, :state, :country, :player_id, :prefix, :sets
   @@all = []
   
   def initialize(attributes)
@@ -23,6 +23,7 @@ class PlayerSetHistory::Player
     attributes[:slug] = user_hash["discriminator"]
     attributes[:player_id] = user_hash["player"]["id"]
     attributes[:tag] = user_hash["player"]["gamerTag"]
+    attributes[:prefix] = user_hash["player"]["prefix"]
     
     # Links
     user_hash["authorizations"].each do |url|
@@ -44,5 +45,9 @@ class PlayerSetHistory::Player
     player = PlayerSetHistory::Player.new(attributes)
     @@all << player
     return player
+  end
+  
+  def self.create_from_tag(tag)
+    
   end
 end

@@ -22,6 +22,7 @@ class PlayerSetHistory::Importer
           player {
            id
            gamerTag
+           prefix
             }
            }
           }
