@@ -5,14 +5,15 @@ i = PlayerSetHistory::Importer.new()
 
 
 # response = i.import_user_from_sgg("08e32f96")
-#response = i.import_sets_from_sgg("08e32f96", "15866")
+response = i.import_sets_from_sgg("08e32f96", "15866")
 
 #player = PlayerSetHistory::Player.create_from_json(response)
 
-player = PlayerSetHistory::Player.create_from_tag(prefix:"TSB", tag:"Sway")
+#player = PlayerSetHistory::Player.create_from_tag(prefix:"TSB", tag:"Sway")
 
-p2 = PlayerSetHistory::Player.find_or_create_from_tag("swayzzz")
-binding.pry
+# p2 = PlayerSetHistory::Player.find_or_create_from_tag("swayzzz")
+
+PlayerSetHistory::Set.create_sets_from_player(response)
 
 
 

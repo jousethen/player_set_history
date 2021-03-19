@@ -7,7 +7,7 @@ class PlayerSetHistory::Tournament
   
   def initialize (name, date)
     @name = name
-    @date = DateTime.strptime(date,'%s')
+    @date = DateTime.strptime(date.to_s,'%s')
     @@all << self
   end
   
