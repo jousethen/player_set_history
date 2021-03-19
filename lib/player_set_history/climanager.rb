@@ -9,13 +9,13 @@ class PlayerSetHistory::CLIManager
   def call
     input = ""
     puts "Welcome! Please Choose the number game we will be pulling sets from"
-    puts "1) Street Fighter V: Champion Edition 33990"
-    puts "2) Guilty Gear Accent Core Plus R 22406"
-    puts "3) Guilty Gear Xrd Rev 2 36"
-    puts "4) Guilty Gear Strive 33945"
-    puts "5) Tekken 7 17"
-    puts "6) Smash Ultimate 1386"
-    puts "7) Mortal Kombat 11 3200"
+    puts "1) Street Fighter V: Champion Edition"
+    puts "2) Guilty Gear Accent Core Plus R"
+    puts "3) Guilty Gear Xrd Rev 2"
+    puts "4) Guilty Gear Strive"
+    puts "5) Tekken 7"
+    puts "6) Smash Ultimate6"
+    puts "7) Mortal Kombat 11"
     
     
     
@@ -55,7 +55,7 @@ class PlayerSetHistory::CLIManager
     
     input = ""
     
-    puts "What would you like to do?"
+    puts "\n\nWhat would you like to do?"
     puts "1) Retrieve set history for player"
     puts "2) Retrieve head-to-head set history between players"
     
@@ -71,9 +71,16 @@ class PlayerSetHistory::CLIManager
     
     if input == "1"
       sets = player.get_all_sets
-      puts sets[0].score
+      
+      sets.each do |set|
+        puts set.score 
+        puts set.tournament.name
+        puts set.tournament.date
+        puts "\n"
+      end
       
     else
+      input = ""
     end
     
   end
