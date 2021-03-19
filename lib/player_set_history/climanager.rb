@@ -69,6 +69,7 @@ class PlayerSetHistory::CLIManager
         end
         
       elsif input == "2"
+        input =""
         importer.import_sets_from_sgg(player.slug, player.player_id)
         puts `clear`
         puts "Enter the opponent's tag: "
@@ -86,7 +87,6 @@ class PlayerSetHistory::CLIManager
           puts "No sets found between #{player.tag} and #{input}. \n"
         else
           sets.each do |set|
-            puts `clear`
             puts set.score 
             puts set.tournament.name
             puts set.tournament.date
