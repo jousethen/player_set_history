@@ -20,11 +20,15 @@ class PlayerSetHistory::Tournament
  end
  
  def self.find_or_create_from_name (name, date)
-    tourny = self.all.index {|x| x.name == name}
+    tourny_index = self.all.index {|x| x.name == name}
     
-    if tourny == nil
+    if tourny_index == nil
       tourny = PlayerSetHistory::Tournament.new(name, date)
+    else
+      tourny = self.all[tourny_index]
     end
+    
+    return tourny
  end
  
 end
