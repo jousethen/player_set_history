@@ -50,13 +50,13 @@ class PlayerSetHistory::Player
   def self.create_from_tag(prefix: "", tag:)
     attributes = {:prefix => prefix, :tag => tag}
     player = PlayerSetHistory::Player.new(attributes)
+    @@all << player
     return player
   end
   
   def self.find_or_create_from_tag(tag)
     player_index = self.all.index {|x| x.tag.downcase == tag.downcase}
-    
-    
+
     if player_index == nil
       player = PlayerSetHistory::Player.create_from_tag(tag: tag)
     else 
@@ -66,13 +66,14 @@ class PlayerSetHistory::Player
     return player
   end
   
-  def find_or_create_from_slug(slug)
+  def self.find_or_create_from_slug(slug)
     player = self.all.index {|x| x.slug == slug}
     
     if player == nil
       importer = PlayerSetHistory::Importer.new()
       r_player = importer.import_user_from_sgg(slug)
       player = PlayerSetHistory::Player.create_from_json(r_player)
+      @@all << player
     end
     
     return player

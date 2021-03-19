@@ -14,17 +14,17 @@ class PlayerSetHistory::Set
     @@all
   end
   
-  def self.create_player_sets(set_hash)
-    set_hash["nodes"].each do |event|
-      # Create tournament if they don't exist
-      tourny = PlayerSetHistory::Tournament.find_tournament_by_name(
-        event["tournament"]["name"])
+  def self.create_sets_from_player(event_hash)
+    #Get one of the players 
+    player_1 = PlayerSetHistory::Player.find_or_create_from_slug(event_hash["discriminator"])
+    
+    event_hash["events"]["nodes"].each do |event|\
+      # Find or create tournament
+      tourny = PlayerSetHistory::Tournament.find_or_create_from_name(
+        event["tournament"]["name"], 
+        event["tournament"]["startAt"]
+      )
       
-      if tourny == nil
-        tourny = PlayerSetHistory::Tournament.new(
-        event["tournament"]["name"],              
-        event["tournament"]["startAt"])
-      end
       
       
       # create sets 
