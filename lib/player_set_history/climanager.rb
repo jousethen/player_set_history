@@ -38,18 +38,20 @@ class PlayerSetHistory::CLIManager
     
     
     importer = PlayerSetHistory::Importer.new(@api_url, @api_key, game_id)
-    player_hash = importer.import_user_from_sgg(input)
-    
-    player = PlayerSetHistory::Player.create_from_json(player_hash, importer)
+    player = PlayerSetHistory::Player.find_or_create_from_slug(input, importer)
     
     puts `clear`
-    puts "Player Sponsor: #{player.prefix}"
-    puts "Player Tag: #{player.tag}"
-    puts "Player Pronouns: #{player.pronoun}"
-    puts "Player Sponsor: #{player.prefix}"
-    puts "Player Sponsor: #{player.prefix}"
-    puts "Player Sponsor: #{player.prefix}"
-    puts "Player Sponsor: #{player.prefix}"
+    puts "----------------------"
+    puts "|   Player Profile   |"
+    puts "----------------------"
+    puts "\n"
+    puts "Sponsor: #{player.prefix}"
+    puts "Tag: #{player.tag}"
+    puts "Pronouns: #{player.pronoun}"
+    puts "Location: #{player.state}, #{player.country}"
+    puts "Twitter: #{player.twitter}"
+    puts "Discord: #{player.discord}"
+    puts "Twitch: #{player.twitch}"
   end
   
   
