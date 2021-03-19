@@ -61,9 +61,9 @@ class PlayerSetHistory::CLIManager
     
     
     until input.to_i.between?(1,2) do
-      puts "The input must be a valid number"
       input = gets.chomp
     end
+    
     puts `clear`
     puts "Loading..."
     
@@ -71,7 +71,6 @@ class PlayerSetHistory::CLIManager
     
     if input == "1"
       sets = player.get_all_sets
-      
       sets.each do |set|
         puts set.score 
         puts set.tournament.name
@@ -81,6 +80,26 @@ class PlayerSetHistory::CLIManager
       
     else
       input = ""
+      puts `clear`
+      puts "Enter the opponent's tag: "
+      
+      until input != "" do
+        input = gets.chomp
+      end
+      
+      puts `clear`
+      puts "Loading..."
+      
+      sets = player.get_all_sets_vs_player(input)
+      
+      
+      sets.each do |set|
+        puts set.score 
+        puts set.tournament.name
+        puts set.tournament.date
+        puts "\n"
+      end
+      
     end
     
   end
