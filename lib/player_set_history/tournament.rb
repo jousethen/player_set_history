@@ -19,7 +19,7 @@ class PlayerSetHistory::Tournament
    @sets << set
  end
  
- def find_tournament_by_name (name)
+ def self.find_tournament_by_name (name)
    return self.all.index {|x| x.name == name}
  end
  
