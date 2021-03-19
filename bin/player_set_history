@@ -1,9 +1,7 @@
 #!/usr/bin/env ruby
 require_relative '../lib/environment'
 
-input = ""
 
-until input == "exit"
 PlayerSetHistory::CLIManager.new(api_key: "97db6a94b20d4004ba9ad54d37d6a290").call
 
 

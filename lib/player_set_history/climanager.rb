@@ -40,9 +40,9 @@ class PlayerSetHistory::CLIManager
     importer = PlayerSetHistory::Importer.new(@api_url, @api_key, game_id)
     player = PlayerSetHistory::Player.find_or_create_from_slug(input, importer)
     display_player_profile(player)
-    input = ""
     
     until input == "4"
+      input = ""
       puts "\n\nWhat would you like to do?"
       puts "1) Retrieve set history for player"
       puts "2) Retrieve head-to-head set history between players"
@@ -68,7 +68,7 @@ class PlayerSetHistory::CLIManager
           puts "\n"
         end
         
-      else
+      elsif input == "2"
         input = ""
         puts `clear`
         puts "Enter the opponent's tag: "
@@ -84,12 +84,26 @@ class PlayerSetHistory::CLIManager
         
         
         sets.each do |set|
+          puts `clear`
           puts set.score 
           puts set.tournament.name
           puts set.tournament.date
           puts "\n"
         end
         
+      elsif input == "3"
+        input = ""
+        puts `clear`
+        puts "Please enter the players slug: \n\n"
+        puts "*To find the player slug, go to their smash.gg profile. You can pull it from the page itself or the url*: \n\nSample: Smash.gg/user/[slug]"
+    
+        until input != "" do
+          input = gets.chomp
+        end
+        puts "Loading..."
+    
+        player = PlayerSetHistory::Player.find_or_create_from_slug(input, importer)
+        display_player_profile(player)
       end
     end
     
