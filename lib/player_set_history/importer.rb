@@ -88,7 +88,7 @@ class PlayerSetHistory::Importer
       }.to_json
     )
     
-    return JSON.parse(result.response.body)["data"]["user"]
-    
+    event_hash =  JSON.parse(result.response.body)["data"]["user"]
+    PlayerSetHistory::Set.create_sets_from_player(event_hash, self)
   end
 end

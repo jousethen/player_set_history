@@ -52,6 +52,30 @@ class PlayerSetHistory::CLIManager
     puts "Twitter: #{player.twitter}"
     puts "Discord: #{player.discord}"
     puts "Twitch: #{player.twitch}"
+    
+    input = ""
+    
+    puts "What would you like to do?"
+    puts "1) Retrieve set history for player"
+    puts "2) Retrieve head-to-head set history between players"
+    
+    
+    until input.to_i.between?(1,2) do
+      puts "The input must be a valid number"
+      input = gets.chomp
+    end
+    puts `clear`
+    puts "Loading..."
+    
+    importer.import_sets_from_sgg(player.slug, player.player_id)
+    
+    if input == "1"
+      sets = player.get_all_sets
+      puts sets[0].score
+      
+    else
+    end
+    
   end
   
   
