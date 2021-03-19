@@ -53,7 +53,15 @@ class PlayerSetHistory::Player
     return player
   end
   
-  def find_or_create_from_tag(prefix:"", tag:)
+  def find_or_create_from_slug(slug)
+    player = self.all.index {|x| x.slug == slug}
     
+    if player == nil
+      importer = PlayerSetHistory::Importer.new()
+      r_player = importer.import_user_from_sgg(slug)
+      player = PlayerSetHistory::Player.create_from_json(r_player)
+    end
+    
+    return player
   end
 end

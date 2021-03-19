@@ -33,6 +33,7 @@ class PlayerSetHistory::Importer
     return %{
       query Users($slug: String, $pid: ID) {
         user(slug: $slug) {
+          discriminator
           events(query: { page: 1, perPage: 100, filter: { videogameId: #{@game_id} } }) {
             nodes {
               tournament{
@@ -87,7 +88,7 @@ class PlayerSetHistory::Importer
       }.to_json
     )
     
-    return JSON.parse(result.response.body)["data"]["user"]["events"]
+    return JSON.parse(result.response.body)["data"]["user"]
     
   end
 end
