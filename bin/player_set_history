@@ -4,16 +4,27 @@ require_relative '../lib/environment'
 i = PlayerSetHistory::Importer.new()
 
 
-# response = i.import_user_from_sgg("08e32f96")
-response = i.import_sets_from_sgg("08e32f96", "15866")
+r1 = i.import_user_from_sgg("08e32f96")
+player = PlayerSetHistory::Player.create_from_json(r1)
 
-#player = PlayerSetHistory::Player.create_from_json(response)
+r2 = i.import_sets_from_sgg(player.slug, player.player_id)
+
+
 
 #player = PlayerSetHistory::Player.create_from_tag(prefix:"TSB", tag:"Sway")
 
 # p2 = PlayerSetHistory::Player.find_or_create_from_tag("swayzzz")
 
-PlayerSetHistory::Set.create_sets_from_player(response)
+PlayerSetHistory::Set.create_sets_from_player(r2)
+
+sets = player.get_all_sets
+
+sets.each do |set|
+puts set.score
+puts set.tournament.name 
+puts "\n"
+end
+
 
 
 

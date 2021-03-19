@@ -43,14 +43,12 @@ class PlayerSetHistory::Player
     end
     
     player = PlayerSetHistory::Player.new(attributes)
-    @@all << player
     return player
   end
   
   def self.create_from_tag(prefix: "", tag:)
     attributes = {:prefix => prefix, :tag => tag}
     player = PlayerSetHistory::Player.new(attributes)
-    @@all << player
     return player
   end
   
@@ -67,18 +65,25 @@ class PlayerSetHistory::Player
   end
   
   def self.find_or_create_from_slug(slug)
-    player = self.all.index {|x| x.slug == slug}
+    player_index = self.all.index {|x| x.slug == slug}
     
-    if player == nil
+    if player_index == nil
       importer = PlayerSetHistory::Importer.new()
       r_player = importer.import_user_from_sgg(slug)
       player = PlayerSetHistory::Player.create_from_json(r_player)
-      @@all << player
+    else
+      player = self.all[player_index]
     end
     
     return player
   end
   
+  def get_all_sets
+    sets = PlayerSetHistory::Set.all.select do |set|
+      set.players.include?(self)
+    end
+    return sets
+  end
   
   
 end
