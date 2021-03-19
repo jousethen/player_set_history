@@ -53,6 +53,19 @@ class PlayerSetHistory::Player
     return player
   end
   
+  def self.find_or_create_from_tag(tag)
+    player_index = self.all.index {|x| x.tag.downcase == tag.downcase}
+    
+    
+    if player_index == nil
+      player = PlayerSetHistory::Player.create_from_tag(tag: tag)
+    else 
+      player = self.all[player_index]
+    end
+    
+    return player
+  end
+  
   def find_or_create_from_slug(slug)
     player = self.all.index {|x| x.slug == slug}
     
@@ -64,4 +77,7 @@ class PlayerSetHistory::Player
     
     return player
   end
+  
+  
+  
 end
