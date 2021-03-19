@@ -87,7 +87,7 @@ class PlayerSetHistory::Player
   def get_all_sets_vs_player (player_tag)
     
     sets = self.get_all_sets.select do |set|
-      set.score.include?(player_tag)
+      set.score.downcase.include?(player_tag.downcase)
     end
     return sets
   end
