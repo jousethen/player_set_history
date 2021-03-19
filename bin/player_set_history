@@ -17,7 +17,7 @@ r2 = i.import_sets_from_sgg(player.slug, player.player_id)
 
 PlayerSetHistory::Set.create_sets_from_player(r2)
 
-sets = player.get_all_sets
+sets = player.get_all_sets_vs_player("Joe Biden")
 
 sets.each do |set|
 puts set.score

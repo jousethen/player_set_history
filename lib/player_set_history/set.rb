@@ -22,7 +22,6 @@ class PlayerSetHistory::Set
         event["tournament"]["startAt"]
       )
       
-      
       # create sets 
       event["sets"]["nodes"].each do |set|
         score = set["displayScore"]
@@ -51,7 +50,7 @@ class PlayerSetHistory::Set
             winner = player_tag
           end
         end
-        
+      
         set_attributes = {players: [player_1, player_2], 
                           score: score, 
                           winner: winner, 

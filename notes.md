@@ -4,8 +4,6 @@ Player
 - Belongs to a Set
 - Belongs to a Tournament
 - #Set_History
-- #Sets_Won
-- #Sets_Lost
 - #Tournaments_Won
 - .Best_Record
 - Attributes: Slug, GamerTag, Twitter, Discord, Twitch, Pronoun, State, Country, Player_ID

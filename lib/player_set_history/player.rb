@@ -85,5 +85,13 @@ class PlayerSetHistory::Player
     return sets
   end
   
+  def get_all_sets_vs_player (player_tag)
+    
+    sets = self.get_all_sets.select do |set|
+      set.score.include?(player_tag)
+    end
+    return sets
+  end
+  
   
 end

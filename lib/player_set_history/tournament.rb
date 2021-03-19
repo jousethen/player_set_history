@@ -1,8 +1,7 @@
 require 'date'
 
 class PlayerSetHistory::Tournament
-  attr_accessor :sets, :date, :name
-  attr_reader :winner
+  attr_accessor :sets, :date, :name, :winner
   @@all = []
   
   def initialize (name, date)
