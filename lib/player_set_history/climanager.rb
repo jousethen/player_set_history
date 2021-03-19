@@ -39,67 +39,58 @@ class PlayerSetHistory::CLIManager
     
     importer = PlayerSetHistory::Importer.new(@api_url, @api_key, game_id)
     player = PlayerSetHistory::Player.find_or_create_from_slug(input, importer)
-    
-    puts `clear`
-    puts "----------------------"
-    puts "|   Player Profile   |"
-    puts "----------------------"
-    puts "\n"
-    puts "Sponsor: #{player.prefix}"
-    puts "Tag: #{player.tag}"
-    puts "Pronouns: #{player.pronoun}"
-    puts "Location: #{player.state}, #{player.country}"
-    puts "Twitter: #{player.twitter}"
-    puts "Discord: #{player.discord}"
-    puts "Twitch: #{player.twitch}"
-    
+    display_player_profile(player)
     input = ""
     
-    puts "\n\nWhat would you like to do?"
-    puts "1) Retrieve set history for player"
-    puts "2) Retrieve head-to-head set history between players"
-    
-    
-    until input.to_i.between?(1,2) do
-      input = gets.chomp
-    end
-    
-    puts `clear`
-    puts "Loading..."
-    
-    importer.import_sets_from_sgg(player.slug, player.player_id)
-    
-    if input == "1"
-      sets = player.get_all_sets
-      sets.each do |set|
-        puts set.score 
-        puts set.tournament.name
-        puts set.tournament.date
-        puts "\n"
-      end
+    until input == "4"
+      puts "\n\nWhat would you like to do?"
+      puts "1) Retrieve set history for player"
+      puts "2) Retrieve head-to-head set history between players"
+      puts "3) Search for another player"
+      puts "4) Exit"
       
-    else
-      input = ""
-      puts `clear`
-      puts "Enter the opponent's tag: "
       
-      until input != "" do
+      until input.to_i.between?(1,4) do
         input = gets.chomp
       end
       
       puts `clear`
       puts "Loading..."
       
-      sets = player.get_all_sets_vs_player(input)
+      importer.import_sets_from_sgg(player.slug, player.player_id)
       
-      
-      sets.each do |set|
-        puts set.score 
-        puts set.tournament.name
-        puts set.tournament.date
-        puts "\n"
+      if input == "1"
+        sets = player.get_all_sets
+        sets.each do |set|
+          puts set.score 
+          puts set.tournament.name
+          puts set.tournament.date
+          puts "\n"
+        end
+        
+      else
+        input = ""
+        puts `clear`
+        puts "Enter the opponent's tag: "
+        
+        until input != "" do
+          input = gets.chomp
+        end
+        
+        puts `clear`
+        puts "Loading..."
+        
+        sets = player.get_all_sets_vs_player(input)
+        
+        
+        sets.each do |set|
+          puts set.score 
+          puts set.tournament.name
+          puts set.tournament.date
+          puts "\n"
+        end
+        
       end
-      
     end
     
   end
@@ -122,6 +113,21 @@ class PlayerSetHistory::CLIManager
       when "7"
         return "3200"
       end
+  end
+  
+  def display_player_profile (player)
+    puts `clear`
+    puts "----------------------"
+    puts "|   Player Profile   |"
+    puts "----------------------"
+    puts "\n"
+    puts "Sponsor: #{player.prefix}"
+    puts "Tag: #{player.tag}"
+    puts "Pronouns: #{player.pronoun}"
+    puts "Location: #{player.state}, #{player.country}"
+    puts "Twitter: #{player.twitter}"
+    puts "Discord: #{player.discord}"
+    puts "Twitch: #{player.twitch}"
   end
   
 end
