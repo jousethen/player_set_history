@@ -11,9 +11,9 @@ class PlayerSetHistory::Set
     @@all
   end
   
-  def self.create_sets_from_player(event_hash)
+  def self.create_sets_from_player(event_hash, importer)
     #Get one of the players 
-    player_1 = PlayerSetHistory::Player.find_or_create_from_slug(event_hash["discriminator"])
+    player_1 = PlayerSetHistory::Player.find_or_create_from_slug(event_hash["discriminator"], importer)
     
     event_hash["events"]["nodes"].each do |event|
       # Find or create tournament

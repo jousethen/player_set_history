@@ -64,11 +64,10 @@ class PlayerSetHistory::Player
     return player
   end
   
-  def self.find_or_create_from_slug(slug)
+  def self.find_or_create_from_slug(slug, importer)
     player_index = self.all.index {|x| x.slug == slug}
     
     if player_index == nil
-      importer = PlayerSetHistory::Importer.new()
       r_player = importer.import_user_from_sgg(slug)
       player = PlayerSetHistory::Player.create_from_json(r_player)
     else

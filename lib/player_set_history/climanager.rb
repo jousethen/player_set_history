@@ -24,13 +24,37 @@ class PlayerSetHistory::CLIManager
       input = gets.chomp
     end
     
+    game_id = get_game_id(input)
+    puts `clear`
     
-    puts "To find the player slug, go to their smash.gg profile. You can pull it from the page itself or the url: \n\nSample: Smash.gg/user/[slug]"
+    input = ""
+    puts "Please enter the players slug: \n\n"
+    puts "*To find the player slug, go to their smash.gg profile. You can pull it from the page itself or the url*: \n\nSample: Smash.gg/user/[slug]"
+    
+    until input != "" do
+      input = gets.chomp
+    end
+    puts "Loading..."
+    
+    
+    importer = PlayerSetHistory::Importer.new(@api_url, @api_key, game_id)
+    player_hash = importer.import_user_from_sgg(input)
+    
+    player = PlayerSetHistory::Player.create_from_json(player_hash, importer)
+    
+    puts `clear`
+    puts "Player Sponsor: #{player.prefix}"
+    puts "Player Tag: #{player.tag}"
+    puts "Player Pronouns: #{player.pronoun}"
+    puts "Player Sponsor: #{player.prefix}"
+    puts "Player Sponsor: #{player.prefix}"
+    puts "Player Sponsor: #{player.prefix}"
+    puts "Player Sponsor: #{player.prefix}"
   end
   
   
   def get_game_id (num)
-    case input
+    case num
       when "1"
         return "33990"
       when "2"
