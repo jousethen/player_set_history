@@ -54,11 +54,11 @@ class PlayerSetHistory::Player
     return player
   end
   
-  def self.find_or_create_from_tag(tag)
+  def self.find_or_create_from_tag(tag: , prefix: "")
     player_index = self.all.index {|x| x.tag.downcase == tag.downcase}
 
     if player_index == nil
-      player = PlayerSetHistory::Player.create_from_tag(tag: tag)
+      player = PlayerSetHistory::Player.create_from_tag(tag: tag, prefix: prefix)
     else 
       player = self.all[player_index]
     end

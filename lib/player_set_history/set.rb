@@ -29,16 +29,36 @@ class PlayerSetHistory::Set
       # create sets 
       event["sets"]["nodes"].each do |set|
         score = set["displayScore"]
+        player_2 = nil 
+        winner_score = 0 
+        winner = ""
         
         score.split(" - ").each do |player|
-          player_name = player[0..-3].split(" | ")
-           binding.pry
-          if player_name[1] != player_1.tag 
-            player_2 = PlayerSetHistory::Player.create_from_tag(tag: player_tag[1], prefix: player_[0])
-           
+          # Parse score
+          if player.include?("|")
+            player_tag = player[0..-3].split(" | ")[1]
+            player_prefix = player.split(" | ")[0]
+          else
+            player_tag = player[0..-3]
+            player_prefix = ""
           end
           
+          # create player_2 if neccessary
+          if player_tag != player_1.tag 
+            player_2 = PlayerSetHistory::Player.find_or_create_from_tag(tag: player_tag, prefix: player_prefix)
+          end
+          
+          # Find winner
+          if player[-1].to_i > winner_score
+            winner_score = player[-1].to_i
+            winner = player_tag
+          end
+          
+          
         end
+        
+        binding.pry
+        
         
       end
       
