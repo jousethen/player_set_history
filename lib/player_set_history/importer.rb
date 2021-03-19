@@ -1,7 +1,7 @@
 class PlayerSetHistory::Importer
   attr_accessor :url, :token
   
-  def initialize(url = "https://api.smash.gg/gql/alpha", token = "97db6a94b20d4004ba9ad54d37d6a290", game_id = "22406")
+  def initialize(url,token, game_id = "22406")
     @url = url
     @token = token
     @game_id = game_id

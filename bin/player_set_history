@@ -1,29 +1,7 @@
 #!/usr/bin/env ruby
 require_relative '../lib/environment'
 
-i = PlayerSetHistory::Importer.new()
-
-
-r1 = i.import_user_from_sgg("08e32f96")
-player = PlayerSetHistory::Player.create_from_json(r1)
-
-r2 = i.import_sets_from_sgg(player.slug, player.player_id)
-
-
-
-#player = PlayerSetHistory::Player.create_from_tag(prefix:"TSB", tag:"Sway")
-
-# p2 = PlayerSetHistory::Player.find_or_create_from_tag("swayzzz")
-
-PlayerSetHistory::Set.create_sets_from_player(r2)
-
-sets = player.get_all_sets_vs_player("Joe Biden")
-
-sets.each do |set|
-puts set.score
-puts set.tournament.name 
-puts "\n"
-end
+PlayerSetHistory::CLIManager.new(api_key: "97db6a94b20d4004ba9ad54d37d6a290").call
 
 
 
