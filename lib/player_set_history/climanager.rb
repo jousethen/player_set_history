@@ -57,9 +57,9 @@ class PlayerSetHistory::CLIManager
       puts `clear`
       puts "Loading..."
       
-      importer.import_sets_from_sgg(player.slug, player.player_id)
-      
       if input == "1"
+        importer.import_sets_from_sgg(player.slug, player.player_id)
+        
         sets = player.get_all_sets
         sets.each do |set|
           puts set.score 
@@ -69,7 +69,7 @@ class PlayerSetHistory::CLIManager
         end
         
       elsif input == "2"
-        input = ""
+        importer.import_sets_from_sgg(player.slug, player.player_id)
         puts `clear`
         puts "Enter the opponent's tag: "
         
@@ -82,13 +82,16 @@ class PlayerSetHistory::CLIManager
         
         sets = player.get_all_sets_vs_player(input)
         
-        
-        sets.each do |set|
-          puts `clear`
-          puts set.score 
-          puts set.tournament.name
-          puts set.tournament.date
-          puts "\n"
+        if sets.length == 0 
+          puts "No sets found between #{player.tag} and #{input}. \n"
+        else
+          sets.each do |set|
+            puts `clear`
+            puts set.score 
+            puts set.tournament.name
+            puts set.tournament.date
+            puts "\n"
+          end
         end
         
       elsif input == "3"
