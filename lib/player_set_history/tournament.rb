@@ -9,6 +9,7 @@ class PlayerSetHistory::Tournament
     @name = name
     @date = DateTime.strptime(date.to_s,'%s')
     @@all << self
+    @sets = []
   end
   
   def self.all 

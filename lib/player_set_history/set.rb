@@ -1,12 +1,9 @@
 class PlayerSetHistory::Set
-  attr_accessor :players, :tournament, :score
-  attr_reader :winner
+  attr_accessor :players, :tournament, :score, :winner
   @@all = []
   
-  def initialize (player_1, player_2, score)
-    @players << player_1
-    @players << player_2
-    @score = score
+  def initialize(attributes)
+    attributes.each {|key, value| self.send(("#{key}="), value)} 
     @@all << self
   end
   
@@ -53,16 +50,18 @@ class PlayerSetHistory::Set
             winner_score = player[-1].to_i
             winner = player_tag
           end
-          
-          
         end
         
-        binding.pry
-        
-        
+        set_attributes = {players: [player_1, player_2], 
+                          score: score, 
+                          winner: winner, 
+                          tournament: tourny
+        }
+       
+        new_set = PlayerSetHistory::Set.new(set_attributes)
+        tourny.add_set(new_set)
       end
-      
     end
-    
   end
+  
 end
