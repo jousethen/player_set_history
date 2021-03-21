@@ -2,7 +2,7 @@
 require_relative '../lib/environment'
 
 
-PlayerSetHistory::CLIManager.new(api_key: "").call
+PlayerSetHistory::CLIManager.new(api_key: "97db6a94b20d4004ba9ad54d37d6a290").call
 
 
 

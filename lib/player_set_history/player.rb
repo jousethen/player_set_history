@@ -26,22 +26,23 @@ class PlayerSetHistory::Player
       :prefix => user_hash["player"]["prefix"],
     }
     # Links
-    user_hash["authorizations"].each do |url|
-      
-      social = ""
-      social = url["url"]
-      
-      if social != nil
-        if social.include?("twitter")
-          attributes[:twitter] = social
-        elsif social.include?("discord")
-          attributes[:discord] = social
-        elsif social.include?("twitch")
-          attributes[:twitch] = social
+    unless user_hash["authorizations"] == nil
+      user_hash["authorizations"].each do |url|
+        
+        social = ""
+        social = url["url"]
+        
+        if social != nil
+          if social.include?("twitter")
+            attributes[:twitter] = social
+          elsif social.include?("discord")
+            attributes[:discord] = social
+          elsif social.include?("twitch")
+            attributes[:twitch] = social
+          end
         end
       end
     end
-    
     player = PlayerSetHistory::Player.new(attributes)
     return player
   end
