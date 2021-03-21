@@ -1,3 +1,5 @@
+# Made this before the project started.
+
 Classes (Potentially)
 
 Player

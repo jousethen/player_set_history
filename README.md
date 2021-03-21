@@ -1,24 +1,37 @@
 # PlayerSetHistory
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/player_set_history`. To experiment with that code, run `bin/console` for an interactive prompt.
+Welcome! This gem will provide a CLI interface to the smash.gg API for the purpose of pulling a player's set history as well as provide basic profile information.
 
-TODO: Delete this and the text above, and describe your gem
+## Getting Started
 
-## Installation
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-Add this line to your application's Gemfile:
+### Prerequisites
 
-```ruby
-gem 'player_set_history'
+Before starting you will need. 
+
+
+```
+- Smash.GG API Key. It's free!
+- Basic knowledge on where to find player information. Example: Player Slugs
 ```
 
-And then execute:
+### Installing
 
-    $ bundle
+A step by step series of examples that tell you how to get a development env running
 
-Or install it yourself as:
+Clone this repository
 
-    $ gem install player_set_history
+```
+Give the example
+```
+
+And repeat
+
+```
+until finished
+```
+
 
 ## Usage
 
