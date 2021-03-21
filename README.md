@@ -13,29 +13,18 @@ Before starting you will need.
 
 ```
 - Smash.GG API Key. It's free!
-- Basic knowledge on where to find player information. Example: Player Slugs
+- Basic Knowledge of smash.gg 
 ```
 
 ### Installing
 
 A step by step series of examples that tell you how to get a development env running
 
-Clone this repository
+Clone this repository and modify bin/player_set_history so that your API key gets passed to the call
 
 ```
-Give the example
+PlayerSetHistory::CLIManager.new(api_key: "832djsadjahde838392482sd23").call
 ```
-
-And repeat
-
-```
-until finished
-```
-
-
-## Usage
-
-TODO: Write usage instructions here
 
 ## Development
 
