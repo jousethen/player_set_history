@@ -42,6 +42,7 @@ class PlayerSetHistory::Importer
               }
               sets(filters: { playerIds: [$pid] }) {
                 nodes {
+                  id
                   displayScore
                 }
               }
