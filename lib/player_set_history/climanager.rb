@@ -14,7 +14,7 @@ class PlayerSetHistory::CLIManager
     puts "3) Guilty Gear Xrd Rev 2"
     puts "4) Guilty Gear Strive"
     puts "5) Tekken 7"
-    puts "6) Smash Ultimate6"
+    puts "6) Smash Ultimate"
     puts "7) Mortal Kombat 11"
     
     
