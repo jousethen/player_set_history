@@ -25,7 +25,7 @@ class PlayerSetHistory::CLIManager
     end
     
     game_id = get_game_id(input)
-    puts `clear` || puts "cls"
+    system("clear")
     
     input = ""
     puts "Please enter the players slug: \n\n"
@@ -54,7 +54,7 @@ class PlayerSetHistory::CLIManager
         input = gets.chomp
       end
       
-      puts `clear`
+      system("clear")
       puts "Loading..."
       
       if input == "1"
@@ -71,14 +71,14 @@ class PlayerSetHistory::CLIManager
       elsif input == "2"
         input =""
         importer.import_sets_from_sgg(player.slug, player.player_id)
-        puts `clear`
+        system("clear")
         puts "Enter the opponent's tag: "
         
         until input != "" do
           input = gets.chomp
         end
         
-        puts `clear`
+        system("clear")
         puts "Loading..."
         
         sets = player.get_all_sets_vs_player(input)
@@ -96,7 +96,7 @@ class PlayerSetHistory::CLIManager
         
       elsif input == "3"
         input = ""
-        puts `clear`
+        system("clear")
         puts "Please enter the players slug: \n\n"
         puts "*To find the player slug, go to their smash.gg profile. You can pull it from the page itself or the url*: \n\nSample: Smash.gg/user/[slug]"
     
@@ -133,7 +133,7 @@ class PlayerSetHistory::CLIManager
   end
   
   def display_player_profile (player)
-    puts `clear`
+    system("clear")
     puts "----------------------"
     puts "|   Player Profile   |"
     puts "----------------------"
