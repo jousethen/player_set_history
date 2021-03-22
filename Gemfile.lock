@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    player_set_history (1.0.1)
+    player_set_history (1.0.2)
       httparty
       pry
 
