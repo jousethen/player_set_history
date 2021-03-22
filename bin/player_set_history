@@ -1,8 +1,11 @@
 #!/usr/bin/env ruby
 require_relative '../lib/environment'
 
+puts "Input API_KEY:"
+input = gets.chomp
 
-PlayerSetHistory::CLIManager.new(api_key: "").call
+
+PlayerSetHistory::CLIManager.new(api_key: input).call
 
 
 
