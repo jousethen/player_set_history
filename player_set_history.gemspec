@@ -9,16 +9,16 @@ Gem::Specification.new do |spec|
   spec.authors       = ["'Jouse Then'"]
   spec.email         = ["'jthen93@gmail.com'"]
 
-  spec.summary       = %q{test}
-  spec.description   = %q{test}
-  spec.homepage      = "http://www.test.com"
+  spec.summary       = %q{"Retrieves player set history"}
+  spec.description   = %q{"Retrieves a player's smash.gg set history and displays it in a CLI. On the back-end, it creates player, sets, tournament objects which can be referenced for more information in the future"}
+  spec.homepage      = "https://github.com/jousethen/player_set_history"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
     
-
+    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
     spec.metadata["homepage_uri"] = spec.homepage
 
   else
