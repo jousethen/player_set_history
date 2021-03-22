@@ -61,7 +61,6 @@ class PlayerSetHistory::Set
                               winner: winner, 
                               tournament: tourny
             }
-           
             new_set = PlayerSetHistory::Set.new(set_attributes)
             tourny.add_set(new_set)
           end

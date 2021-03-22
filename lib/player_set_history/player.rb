@@ -43,7 +43,8 @@ class PlayerSetHistory::Player
         end
       end
     end
-    player = PlayerSetHistory::Player.new(attributes)
+    player = find_or_create_from_tag(tag: attributes[:tag])
+    player.add_player_attributes(attributes)
     return player
   end
   
