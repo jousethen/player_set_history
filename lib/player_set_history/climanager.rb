@@ -7,6 +7,7 @@ class PlayerSetHistory::CLIManager
   end
   
   def call
+    system("clear")
     input = ""
     puts "Welcome! Please Choose the number game we will be pulling sets from"
     puts "1) Street Fighter V: Champion Edition"
