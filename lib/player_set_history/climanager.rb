@@ -25,7 +25,7 @@ class PlayerSetHistory::CLIManager
     end
     
     game_id = get_game_id(input)
-    puts `clear`
+    puts `clear` || puts "cls"
     
     input = ""
     puts "Please enter the players slug: \n\n"
