@@ -90,6 +90,10 @@ class PlayerSetHistory::Importer
     )
     
     event_hash =  JSON.parse(result.response.body)["data"]["user"]
-    PlayerSetHistory::Set.create_sets_from_player(event_hash, self)
+    if event_hash["events"]["nodes"] == nil 
+      puts "This player does not play this game"
+    else
+      PlayerSetHistory::Set.create_sets_from_player(event_hash, self)
+    end
   end
 end
