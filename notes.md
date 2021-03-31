@@ -33,7 +33,7 @@ SggApi
 SAMPLE QUERY
 
 @url = 'https://api.smash.gg/gql/alpha'
-@token = '97db6a94b20d4004ba9ad54d37d6a290'
+@token = ''
 
 query = %{
 query Users($slug: String) {
