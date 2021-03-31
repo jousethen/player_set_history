@@ -17,6 +17,7 @@ class PlayerSetHistory::CLIManager
     puts "5) Tekken 7"
     puts "6) Smash Ultimate"
     puts "7) Mortal Kombat 11"
+    puts "8) Granblue Fantasy Versus"
     
     
     
@@ -130,6 +131,8 @@ class PlayerSetHistory::CLIManager
         return "1386"
       when "7"
         return "3200"
+      when "8"
+        return "22107"
       end
   end
   
