@@ -21,7 +21,7 @@ class PlayerSetHistory::CLIManager
     
     
     
-    until input.to_i.between?(1,7) do
+    until input.to_i.between?(1,8) do
       puts "The input must be a valid number"
       input = gets.chomp
     end
