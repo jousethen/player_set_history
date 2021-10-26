@@ -2,6 +2,8 @@
 
 Welcome! This gem will provide a CLI interface to the smash.gg API for the purpose of pulling a player's set history as well as provide basic profile information.
 
+Demo: https://youtu.be/pXKFJemHkU8
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
