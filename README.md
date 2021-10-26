@@ -2,7 +2,7 @@
 
 Welcome! This gem will provide a CLI interface to the smash.gg API for the purpose of pulling a player's set history as well as provide basic profile information.
 
-Demo: https://youtu.be/pXKFJemHkU8
+[Demo](https://youtu.be/pXKFJemHkU8)
 
 ## Getting Started
 
@@ -25,7 +25,7 @@ A step by step series of examples that tell you how to get a development env run
 Clone this repository and modify bin/player_set_history so that your API key gets passed to the call
 
 ```
-PlayerSetHistory::CLIManager.new(api_key: "832djsadjahde838392482sd23").call
+PlayerSetHistory::CLIManager.new(api_key: "xxxxxxxxxxxxxxxxxxxxxxxxx").call
 ```
 
 ## Development
